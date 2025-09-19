@@ -44,13 +44,10 @@ class Store:
     def order(self, shopping_list) -> float:
         """
         Processes an order for multiple products and quantities.
-
         Args:
             shopping_list (list of tuples): Each tuple contains a Product and the quantity to buy.
-
         Returns:
             float: The total price of the purchase.
-
         Raises:
             Exception: If a product cannot fulfill the requested quantity (handled by Product.buy).
         """

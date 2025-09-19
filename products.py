@@ -2,12 +2,10 @@ class Product:
     def __init__(self, name, price, quantity):
         """
         Initializes a new Product instance.
-
         Args:
             name (str): The name of the product. Must not be empty.
             price (float): The price of the product. Must be non-negative.
             quantity (int): The available quantity in stock. Must be non-negative.
-
         Raises:
             Exception: If any of the input values are invalid.
         """
@@ -23,10 +21,10 @@ class Product:
         self.quantity = quantity
         self.active = True
 
+
     def get_quantity(self) -> int:
         """
         Returns the current available quantity of the product.
-
         Returns:
             int: The quantity in stock.
         """
@@ -37,10 +35,8 @@ class Product:
         """
         Sets a new quantity for the product.
         If the quantity is set to zero, the product is deactivated.
-
         Args:
             quantity (int): The new quantity to set.
-
         Raises:
             ValueError: If the quantity is negative.
         """
@@ -48,22 +44,25 @@ class Product:
         if self.quantity == 0:
             return self.deactivate()
 
+
     def is_active(self) -> bool:
         """
         Checks whether the product is active.
-
         Returns:
             bool: True if the product is active, False otherwise.
         """
         return self.active
 
+
     def activate(self):
         """Activates the product, setting its active status to True."""
         self.active = True
 
+
     def deactivate(self):
         """Deactivates the product, setting its active status to False."""
         self.active = False
+
 
     def show(self):
         """Prints a summary of the product, including its name, price, and quantity."""
@@ -73,13 +72,10 @@ class Product:
     def buy(self, quantity) -> float:
         """
         Processes the purchase of a given quantity of the product.
-
         Args:
             quantity (int): The quantity to purchase.
-
         Returns:
             float: The total price for the purchase.
-
         Raises:
             Exception: If the requested quantity is invalid or exceeds available stock.
         """
