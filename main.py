@@ -41,8 +41,8 @@ def show_products():
 def show_quantities():
     """Calculates and prints the total quantity of all products in the store."""
     total_quantity = 0
-    for quantity in products_list():
-        total_quantity += quantity.quantity
+    for product in products_list():
+        total_quantity += product.get_quantity()
     print(f"Total of {total_quantity} in Store")
 
 
