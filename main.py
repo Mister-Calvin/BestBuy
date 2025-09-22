@@ -2,14 +2,16 @@ from products import Product
 from store import Store
 
 # setup initial stock of inventory
-product_list = [ Product("MacBook Air M2", price=1450, quantity=100),
-                 Product("Bose QuietComfort Earbuds", price=250, quantity=500),
-                 Product("Google Pixel 7", price=500, quantity=250)
-               ]
+def input_products():
+    product_list = [ Product("MacBook Air M2", price=1450, quantity=100),
+                     Product("Bose QuietComfort Earbuds", price=250, quantity=500),
+                     Product("Google Pixel 7", price=500, quantity=250)
+                   ]
+    return product_list
 
 
 def make_object():
-    best_buy = Store(product_list)
+    best_buy = Store(input_products())
     return best_buy
 
 
