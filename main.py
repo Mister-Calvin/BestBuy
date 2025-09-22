@@ -28,7 +28,7 @@ def make_order():
     order = []
     which_product = int(input("Which product do you want to buy: "))
     which_quantity = int(input("Which quantity do you want to buy: "))
-    selected_product = products[which_product]
+    selected_product = products[which_product-1]
     order.append((selected_product, which_quantity))
     print(f"Total: {best_buy.order(order)}")
 
