@@ -64,7 +64,7 @@ def menu():
                 elif choice == 3:
                     make_order()
                 elif choice == 4:
-                    break
+                    return
         except ValueError:
             print("Invalid input. Please enter a number from 1 to 4")
 
