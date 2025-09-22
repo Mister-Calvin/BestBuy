@@ -63,10 +63,16 @@ class Product:
         """Deactivates the product, setting its active status to False."""
         self.active = False
 
+    def show(self, index=None):
+        """
+        Prints a summary of the product, including its name, price, and quantity.
+        Optionally includes an index number for display purposes.
 
-    def show(self):
-        """Prints a summary of the product, including its name, price, and quantity."""
-        print(f"{self.name}, Price: {self.price}, Quantity: {self.quantity}")
+        Args:
+            index (int, optional): The product's index in a list (1-based display).
+        """
+        if index is not None:
+            print(f"{index}. {self.name}, Price: ${self.price}, Quantity: {self.quantity}")
 
 
     def buy(self, quantity) -> float:

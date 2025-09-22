@@ -34,8 +34,8 @@ def products_list():
 
 def show_products():
     """Displays all active products in the store with their index, name, price, and quantity."""
-    for index, product in enumerate(products_list()):
-        print(f"{index + 1}. {product.name}, Price: ${product.price}, Quantity: {product.quantity}")
+    for index, product in enumerate(products_list(), start=1):
+        product.show(index)
 
 
 def show_quantities():
