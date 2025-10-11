@@ -14,7 +14,7 @@ def input_products():
     return product_list
 
 
-def make_object():
+def create_store():
     """Initializes a Store object using the predefined product list.
 
         Returns:
@@ -23,35 +23,33 @@ def make_object():
     return best_buy
 
 
-def products_list():
+def products_list(store):
     """Retrieves all active products currently in the store.
-
     Returns:
         list: A list of active Product objects."""
-    products = make_object().get_all_products() #list
-    return products
+    return store.get_all_products()
 
 
-def show_products():
+def show_products(store):
     """Displays all active products in the store with their index, name, price, and quantity."""
-    for index, product in enumerate(products_list(), start=1):
+    for index, product in enumerate(products_list(store), start=1):
         product.show(index)
 
 
-def show_quantities():
+def show_quantities(store):
     """Calculates and prints the total quantity of all products in the store."""
     total_quantity = 0
-    for product in products_list():
+    for product in products_list(store):
         total_quantity += product.get_quantity()
     print(f"Total of {total_quantity} in Store")
 
 
-def make_order():
+def make_order(store):
     """Allows the user to create an order by selecting products and specifying quantities.
         The user can add multiple products, and the total price is displayed at the end.
         Pressing Enter without input finalizes the order."""
     order = []
-    show_products()
+    show_products(store)
     while True:
         which_product_input = input("Which product do you want to buy: \n(leave blank for checkout)")
         if which_product_input == "":
@@ -59,14 +57,13 @@ def make_order():
         which_product = int(which_product_input)
 
         which_quantity_input = int(input("Which quantity do you want to buy: "))
-        selected_product = products_list()[which_product-1]
+        selected_product = products_list(store)[which_product-1]
         order.append((selected_product, which_quantity_input))
         print("Product added to list!\n")
-    print(f"Order made! Total payment: {make_object().order(order)}")
+    print(f"Order made! Total payment: {store.order(order)}")
 
 
-
-def menu():
+def menu(store):
     """Displays the main menu and handles user input to interact with the store system.
         Options:
         1 - List all products
@@ -84,11 +81,11 @@ def menu():
             while True:
                 choice = int(input("Enter your choice: "))
                 if choice == 1:
-                    show_products()
+                    show_products(store)
                 elif choice == 2:
-                    show_quantities()
+                    show_quantities(store)
                 elif choice == 3:
-                    make_order()
+                    make_order(store)
                 elif choice == 4:
                     return
         except ValueError:
@@ -96,8 +93,11 @@ def menu():
 
 
 def main():
-    """Entry point for the program. Launches the main menu."""
-    menu()
+    """Entry point of the BestBuy application.
+    Initializes the store with predefined products and starts the main menu loop,
+    allowing the user to browse products, check total quantities, and place orders."""
+    store = create_store()
+    menu(store)
 
 
 if __name__ == "__main__":
