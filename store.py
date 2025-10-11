@@ -9,18 +9,25 @@ class Store:
         product (list): A list of Product instances to be managed by the store.
     """
     def __init__(self, product):
+        if not all(isinstance(p, Product) for p in product):
+            raise Exception("Product must be of type Product")
+
         self.product = product #list of Products
 
 
     def add_product(self, products):
         """ Adds a list of Product instances to the store.
         Args: products (list): A list of Product instances to be added to the store."""
+        if not isinstance(products, list):
+            raise Exception("Product must be of type Product")
         self.product.append(products)
 
 
     def remove_product(self, products):
         """ Removes a list of Product instances from the store.
         Args: products (list): A list of Product instances to be removed from the store."""
+        if not isinstance(products, list):
+            raise Exception("Product must be of type Product")
         self.product.remove(products)
 
 
