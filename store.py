@@ -37,23 +37,13 @@ class Store:
 
         raise ValueError(f"Product '{product.name}' does not exist in the store")
 
-
     def get_total_quantity(self) -> int:
-        """ Returns the total quantity of the store."""
-        total = 0
-        for product in self.product:
-            total += product.get_quantity()
-        return total
-
+        """Returns the total quantity of all active products in the store."""
+        return sum(product.get_quantity() for product in self.product if product.is_active())
 
     def get_all_products(self) -> List[Product]:
-        """ Returns a list of all products in the store."""
-        products = []
-        for product in self.product:
-            if product.is_active():
-                products.append(product)
-        return products
-
+        """Returns a list of all active products in the store."""
+        return [product for product in self.product if product.is_active()]
 
     def order(self, shopping_list) -> float:
         """
