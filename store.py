@@ -10,25 +10,32 @@ class Store:
     """
     def __init__(self, product):
         if not all(isinstance(p, Product) for p in product):
-            raise Exception("Product must be of type Product")
+            raise TypeError("Product must be of type Product")
 
         self.product = product #list of Products
 
 
-    def add_product(self, products):
-        """ Adds a list of Product instances to the store.
-        Args: products (list): A list of Product instances to be added to the store."""
-        if not isinstance(products, list):
-            raise Exception("Product must be of type Product")
-        self.product.append(products)
+    def add_product(self, product):
+        """Add a single Product instance to the store."""
+        if not isinstance(product, Product):
+            raise TypeError("All items in product must be Product instances")
+        for p in self.product:
+            if p.name == product.name:
+                raise ValueError(f"Product '{product.name}' already exists in the store")
+
+        self.product.append(product)
 
 
-    def remove_product(self, products):
-        """ Removes a list of Product instances from the store.
-        Args: products (list): A list of Product instances to be removed from the store."""
-        if not isinstance(products, list):
-            raise Exception("Product must be of type Product")
-        self.product.remove(products)
+    def remove_product(self, product):
+        """Remove a single Product instance from the store."""
+        if not isinstance(product, Product):
+            raise TypeError("Product must be of type Product")
+        for p in self.product:
+            if p.name == product.name:
+                self.product.remove(p)
+                return
+
+        raise ValueError(f"Product '{product.name}' does not exist in the store")
 
 
     def get_total_quantity(self) -> int:
