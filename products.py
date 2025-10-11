@@ -76,24 +76,21 @@ class Product:
 
 
     def buy(self, quantity) -> float:
-        """
-        Processes the purchase of a given quantity of the product.
+        """Processes the purchase of a given quantity of the product.
         Args:
             quantity (int): The quantity to purchase.
         Returns:
             float: The total price for the purchase.
         Raises:
-            Exception: If the requested quantity is invalid or exceeds available stock.
-        """
+            Exception: If the requested quantity is invalid or exceeds available stock."""
         if not self.is_active():
             raise Exception("Product is not active")
         if quantity > self.quantity:
             raise Exception("not enough available")
+        if quantity <= 0:
+            raise Exception("quantity must be positive")
 
-
-        self.quantity = self.quantity - quantity
-        if self.quantity == 0:
-            self.deactivate()
+        self.set_quantity(self.get_quantity() - quantity)
         total_price = quantity * self.price
         return total_price
 
